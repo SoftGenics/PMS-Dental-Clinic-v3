@@ -5,8 +5,6 @@ const NavbarMenu = () => {
     <div>
 <Navbar collapseOnSelect expand="lg">
   <Container>
-  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="ms-auto">
     <Dropdown>
   <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -20,7 +18,7 @@ const NavbarMenu = () => {
   </Dropdown.Menu>
 </Dropdown>
     </Nav>
-  </Navbar.Collapse>
+
   </Container>
 </Navbar>
     </div>

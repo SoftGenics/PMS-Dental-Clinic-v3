@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
-import {Container, Card} from 'react-bootstrap'
+import {Container, Card, Row, Col} from 'react-bootstrap'
+import Sidebar from '../Sidebar/Sidebar'
+import './DocInfo.css'
 
 
 function DoctorInfo(){
@@ -9,38 +11,45 @@ function DoctorInfo(){
     const {id}  = useParams();
     useEffect(() => {
       const fetchPosts = async () =>{
-        const res = await axios.get(`http://localhost:4001/api/Doctor/${id}`);
+        const res = await axios.get(`https://backend.softgenics.in/api/doctor/${id}`);
         SetPost(res.data)
       }
       fetchPosts();
     })
    return (
        <>
+       <Sidebar />
+
         {GetData.map((getdata) =>{
             return(
-                <>
-                <h1 className='text-center mt-3'>Doctors<span style={{color:'#f76840'}}> Profile</span></h1>
+                <div className='doctor-p-bg'>
+                <h1 className='text-center mt-3'>Doctors Profile</h1>
                   <Container className=" d-flex align-items-center justify-content-center profile-card">
                     
-                    <Card style={{ width: '35rem', marginTop:'8rem', marginBottom:'4rem', boxShadow:' 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)' }}>
-                      <Card.Img src={`http://localhost:4001/uploads/${getdata.profile}` }  />
+                    <Card>
+                      <Row>
+                        <Col sm={5} className="profile-card-wrapper">
+                      <Card.Img src={`https://backend.softgenics.in/uploads/${getdata.profile}` } alt='Doctor Image here' />
+                      <p className='text-center doc-name'>{getdata.firstname} {getdata.lastname}</p>
+                      </Col>
+                      <Col sm={7} className="profile-card-wrapper2">
                       <Card.Body>
-                        <h2 className='text-center mb-3'>{getdata.firstname} {getdata.lastname}</h2>
-                        <Container >
-                        <Card.Text>
-                        <h4>Specialization: <span style={{color:'#f76840', marginLeft:'4px'}}>&nbsp;&nbsp;{getdata.Specialization}</span></h4>
-                        <h4>Experience: <span style={{color:'#f76840', marginLeft:'4px'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{getdata.t_experience}&nbsp;&nbsp;Years</span></h4>
-                        <h4><i class="fas fa-user"></i>&nbsp;&nbsp;Gender: <span style={{color:'#f76840', marginLeft:'4px'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{getdata.gender}</span></h4>
-                        <h4><i class="fas fa-envelope"></i>&nbsp;&nbsp;Email: <span style={{color:'#f76840', marginLeft:'4px'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{getdata.email}</span></h4>
-                        <h4> <i class="fas fa-phone-alt"></i>&nbsp;&nbsp;Phone: <span style={{color:'#f76840', marginLeft:'4px'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{getdata.P_number}</span></h4>
-                        <h4><i class="fab fa-whatsapp"></i>&nbsp;&nbsp;Whatsapp: <span style={{color:'#f76840', marginLeft:'4px'}}>&nbsp;&nbsp;&nbsp;&nbsp;{getdata.w_number}</span></h4>
-                        <h4><i class="fas fa-address-card"></i>&nbsp;&nbsp;Address: <span style={{color:'#f76840', marginLeft:'4px'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{getdata.address}</span></h4>
-                        </Card.Text>
-                        </Container>
+                        <Card.Title className='text-center  mb-3'>About Doctor</Card.Title>
+  
+                        <Card.Text> Specialization: <span >{getdata.Specialization}</span></Card.Text>
+                        <Card.Text>Experience: <span>{getdata.t_experience} Years</span></Card.Text>
+                        <Card.Text><i className="fas fa-user"></i> Gender: <span >{getdata.gender}</span></Card.Text>
+                        <Card.Text><i className="fas fa-envelope"></i> Email: <span>{getdata.email} </span></Card.Text>
+                        <Card.Text> <i className="fas fa-phone-alt"></i> Phone: <span >{getdata.P_number}</span></Card.Text>
+                        <Card.Text><i className="fab fa-whatsapp"></i> Whatsapp: <span>{getdata.w_number}</span></Card.Text>
+                        <Card.Text><i className="fas fa-address-card"></i> Address: <span>{getdata.address}</span></Card.Text>
+ 
                       </Card.Body>
+                      </Col>
+                      </Row>
                     </Card>
                   </Container>
-                </>
+                </div>
                   )
                 }
             )

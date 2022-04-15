@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Container, Row, Col, Form , Image} from 'react-bootstrap';
 import './AddDoctor.css';
-
+import Sidebar from '../../Sidebar/Sidebar'
+import NavbarMenu from '../../Navbar/NavbarMenu'
 function AddDocter() {
 const [user, setUser] = useState({
   firstname:"",
@@ -21,6 +22,8 @@ const onInputChange = e => {
 };
   return (
 <>
+<Sidebar />
+<NavbarMenu />
 <section  data-stellar-background-ratio="3">
     <Container className='mt-5 add-doctor'>
       <h2 className='text-center mt-5'> Add Your Doctor</h2>
@@ -29,7 +32,7 @@ const onInputChange = e => {
             <Image fluid src='images/doctor2.jpg' style={{marginTop:'7rem'}}></Image>                
         </Col>
         <Col md={7} sm={7}>
-           <Form className="add-doctor-form" action="http://localhost:4001/api/addDoctor" method="post" encType="multipart/form-data" >
+           <Form className="add-doctor-form" action="http://backend.softgenics.in/api/addDoctor" method="post" encType="multipart/form-data" >
               <div className='text-center d-inline mb-b'>
                   <h2 className='mb-5'>Fill Doctor<span style={{color:' #3bc0fd '}}> Details</span></h2>
               </div>
@@ -130,10 +133,14 @@ const onInputChange = e => {
                         <Col md={6} sm={6}>
                                         <Form.Label>Specialization</Form.Label>
                                         <Form.Select className="form-control" name="Specialization" value={Specialization} onChange= {e => onInputChange(e)}>
-                                             <option>Tooth cleaner</option>
-                                             <option>Denstiry</option>
-                                             <option>Compsite filling</option>
-                                             <option>white filling</option>
+                                        <option>Dental Implants</option>
+                                         <option>Wisdom Tooth Surgery</option>
+                                         <option>Fractures of Jaw & Face</option>
+                                         <option>Complete & Partial Denture</option>
+                                         <option >Root Canal Treatment/option</option>
+                                         <option>Prthodontic Treatment</option>
+                                         <option>Smile Design/Full Mouth Rehabilitation</option>
+                                         <option>Dental Laser/Bleeding & Swollen gum</option>
                                         </Form.Select>
                                    </Col>
                       </Row>

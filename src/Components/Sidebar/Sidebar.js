@@ -21,7 +21,7 @@ import {
   import {BsListOl, BsFillStopwatchFill} from 'react-icons/bs'
   import {GrList} from 'react-icons/gr'
   import {MdPersonAddAlt1} from 'react-icons/md';
-  import { BiCog, BiCommentAdd} from "react-icons/bi";
+  import { BiCommentAdd} from "react-icons/bi";
   import {FcCalendar} from 'react-icons/fc'
   import {RiFileAddLine} from 'react-icons/ri'
   import 'react-pro-sidebar/dist/css/styles.css';
@@ -62,23 +62,24 @@ const Sidebar = () => {
               </SubMenu>
               <SubMenu icon={<FaUserAlt />} title="Patients">
               <MenuItem icon={<MdPersonAddAlt1/>}><Link to='/Add_Patient'>Add Patients</Link></MenuItem>
-              <MenuItem icon={<BsListOl />}>Patients List</MenuItem>
-              <MenuItem icon={<FcCalendar />}>Today's Patients List</MenuItem>
+              <MenuItem icon={<BsListOl />}><Link to='/Patients_List'>Patients List</Link></MenuItem>
+              <MenuItem icon={<FcCalendar />}><Link to="/Today_Patient">Today's Patients List</Link></MenuItem>
               </SubMenu>
               <SubMenu icon={<BsFillStopwatchFill />} title="Appoitments">
-              <MenuItem icon={<BiCommentAdd />}>New Appoitment</MenuItem>
-              <MenuItem icon={<GrList />}>All Appoitment</MenuItem>
+              <MenuItem icon={<BiCommentAdd />}><Link to="/New_appointment">New Appointment</Link></MenuItem>
+              <MenuItem icon={<GrList />}><Link to="/All_appointment">All Appointment</Link></MenuItem>
+              <MenuItem icon={<FcCalendar />}><Link to="/Todays_appointment">Today's Appointment</Link></MenuItem>
               </SubMenu>
               <SubMenu icon={<ImNewspaper/>} title="Generate Report">
-              <MenuItem icon={<RiFileAddLine />}>New Reports</MenuItem>
-              <MenuItem icon={<GrList />}>All Reports</MenuItem>
+              <MenuItem icon={<RiFileAddLine />}><Link to="/Generate_new_report">New Reports</Link></MenuItem>
+              <MenuItem icon={<GrList />}><Link to='/Report_List'>All Reports</Link></MenuItem>
+              <MenuItem icon={<FcCalendar />}><Link to="/recent_report">Recent Report</Link></MenuItem>
               </SubMenu>
-              <MenuItem icon={<BiCog />}>Settings</MenuItem>
             </Menu>
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+             <MenuItem icon={<FiLogOut />}><Link  to='/logout'>Logout</Link></MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>

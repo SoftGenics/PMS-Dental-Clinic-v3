@@ -1,148 +1,172 @@
-import React from 'react'
+import React,{Component} from 'react'
+import { Navigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Table } from 'react-bootstrap'
+import Sidebar from '../Sidebar/Sidebar';
+import NavbarMenu from '../Navbar/NavbarMenu'
 import './Dashboard.css'
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Legend, Tooltip, CartesianGrid, PieChart, Pie, Label, ComposedChart, Bar, Line, BarChart} from 'recharts'
-const Dashboard = () => {
-const Patients = [
-  {
-    date: '01/04/2022',
-    patients: 10,
-    Male: 7,
-    Female: 3
-  },
-  {
-    date: '02/04/2022',
-    patients: 5,
-    Male: 2,
-    Female: 3
-  },
-  {
-    date: '03/04/2022',
-    patients: 7,
-    Male: 3,
-    Female: 4
-  },
-  {
-    date: '04/04/2022',
-    patients: 12,
-    Male: 5,
-    Female: 7
-  },
-  {
-    date: '05/04/2022',
-    patients: 6,
-    Male: 2,
-    Female: 4
-  },
-  {
-    date: '06/04/2022',
-    patients: 4,
-    Male: 2,
-    Female: 2
-  },
-  {
-    date: '06/04/2022',
-    patients: 10,
-    Male: 6,
-    Female: 4
+export default class dashboard extends Component {
+  constructor(props){
+    super(props)
+    const token = localStorage.getItem("token")
+    let loggedIn = true
+    if(token ==  null){
+      loggedIn= false
+    }
+    this.state = {
+      loggedIn
+    }
   }
-]
-const DashboardItem = [
-  {
-    name:'doctor',
-    number: 4
-  },
-  {
-    name:'Patient',
-    number: 100
-  },
-  {
-    name:'Todays Patents',
-    number: 50
-  },
-  {
-    name:'Appoitment',
-    number: 150
-  }
-]
-const Appoitment = [
-  {
-    No_of_Appointments: 5,
-    date:'01/04/2022',
-    time: '9:00 AM',
-    Tooth_Pain: 1,
-    Colored_Filling: 1,
-    Root_Canal_treatment: 1,
-    Fractured_Root: 2
-  },
-  {
-    No_of_Appointments: 7,
-    date:'02/04/2022',
-    time: '8:00 AM',
-    Tooth_Pain: 2,
-    Colored_Filling: 3,
-    Root_Canal_treatment: 1,
-    Fractured_Root: 2
-  },
-  {
-    No_of_Appointments: 4,
-    date:'03/04/2022',
-    time: '10:00 AM',
-    Tooth_Pain: 2,
-    Colored_Filling: 1,
-    Root_Canal_treatment: 1,
-    Fractured_Root: 0
-  },
-  {
-    No_of_Appointments: 6,
-    date:'04/04/2022',
-    time: '12:00 PM',
-    Tooth_Pain: 2,
-    Colored_Filling: 3,
-    Root_Canal_treatment: 1,
-    Fractured_Root: 0
 
+render()
+
+{
+  const Patients = [
+    {
+      date: '01/04/2022',
+      patients: 10,
+      Male: 7,
+      Female: 3
+    },
+    {
+      date: '02/04/2022',
+      patients: 5,
+      Male: 2,
+      Female: 3
+    },
+    {
+      date: '03/04/2022',
+      patients: 7,
+      Male: 3,
+      Female: 4
+    },
+    {
+      date: '04/04/2022',
+      patients: 12,
+      Male: 5,
+      Female: 7
+    },
+    {
+      date: '05/04/2022',
+      patients: 6,
+      Male: 2,
+      Female: 4
+    },
+    {
+      date: '06/04/2022',
+      patients: 4,
+      Male: 2,
+      Female: 2
+    },
+    {
+      date: '06/04/2022',
+      patients: 10,
+      Male: 6,
+      Female: 4
+    }
+  ]
+  const DashboardItem = [
+    {
+      name:'doctor',
+      number: 4
+    },
+    {
+      name:'Patient',
+      number: 100
+    },
+    {
+      name:'Todays Patents',
+      number: 50
+    },
+    {
+      name:'Appoitment',
+      number: 150
+    }
+  ]
+  const Appoitment = [
+    {
+      No_of_Appointments: 5,
+      date:'01/04/2022',
+      time: '9:00 AM',
+      Tooth_Pain: 1,
+      Colored_Filling: 1,
+      Root_Canal_treatment: 1,
+      Fractured_Root: 2
+    },
+    {
+      No_of_Appointments: 7,
+      date:'02/04/2022',
+      time: '8:00 AM',
+      Tooth_Pain: 2,
+      Colored_Filling: 3,
+      Root_Canal_treatment: 1,
+      Fractured_Root: 2
+    },
+    {
+      No_of_Appointments: 4,
+      date:'03/04/2022',
+      time: '10:00 AM',
+      Tooth_Pain: 2,
+      Colored_Filling: 1,
+      Root_Canal_treatment: 1,
+      Fractured_Root: 0
+    },
+    {
+      No_of_Appointments: 6,
+      date:'04/04/2022',
+      time: '12:00 PM',
+      Tooth_Pain: 2,
+      Colored_Filling: 3,
+      Root_Canal_treatment: 1,
+      Fractured_Root: 0
+  
+    }
+  ]
+  const Patents_Appoitment =[
+    {
+      date: '01/04/2022',
+      patients: 10,
+      Appoitment: 8
+    },
+    {
+      date: '02/04/2022',
+      patients: 5,
+      Appoitment: 9
+    },
+    {
+      date: '03/04/2022',
+      patients: 7,
+      Appoitment: 3
+    },
+    {
+      date: '04/04/2022',
+      patients: 6,
+      Appoitment: 9
+    },
+    {
+      date: '05/04/2022',
+      patients: 12,
+      Appoitment: 10
+    },
+    {
+      date: '06/04/2022',
+      patients: 6,
+      Appoitment: 4
+    },
+    {
+      date: '07/04/2022',
+      patients: 4,
+      Appoitment: 7
+    }
+  ]
+
+  if(this.state.loggedIn === false){
+    return <Navigate to="/" />
   }
-]
-const Patents_Appoitment =[
-  {
-    date: '01/04/2022',
-    patients: 10,
-    Appoitment: 8
-  },
-  {
-    date: '02/04/2022',
-    patients: 5,
-    Appoitment: 9
-  },
-  {
-    date: '03/04/2022',
-    patients: 7,
-    Appoitment: 3
-  },
-  {
-    date: '04/04/2022',
-    patients: 6,
-    Appoitment: 9
-  },
-  {
-    date: '05/04/2022',
-    patients: 12,
-    Appoitment: 10
-  },
-  {
-    date: '06/04/2022',
-    patients: 6,
-    Appoitment: 4
-  },
-  {
-    date: '07/04/2022',
-    patients: 4,
-    Appoitment: 7
-  }
-]
   return (
     <>
+      <Sidebar />
+      <NavbarMenu />
     <Container className='dashboard'>
         <h3><i className="fas fa-arrow-left"></i> Dashboard</h3>
         <p><i className="fas fa-home"></i> / dashboard</p>
@@ -300,4 +324,4 @@ const Patents_Appoitment =[
   )
 }
 
-export default Dashboard
+}
